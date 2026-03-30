@@ -92,7 +92,7 @@ export function Footer() {
               </div>
               <span
                 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
                   fontSize: 18,
                   color: "#fff",
@@ -103,7 +103,7 @@ export function Footer() {
             </div>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 14,
                 color: "rgba(255,255,255,0.5)",
                 lineHeight: 1.7,
@@ -160,7 +160,7 @@ export function Footer() {
           <div>
             <h4
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 14,
                 color: "#fff",
@@ -176,7 +176,7 @@ export function Footer() {
                 key={l.label}
                 to={l.path}
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: 14,
                   color: "rgba(255,255,255,0.5)",
                   marginBottom: 10,
@@ -201,7 +201,7 @@ export function Footer() {
           <div>
             <h4
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 14,
                 color: "#fff",
@@ -216,7 +216,7 @@ export function Footer() {
               <div
                 key={s.title}
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: 14,
                   color: "rgba(255,255,255,0.5)",
                   marginBottom: 10,
@@ -239,7 +239,7 @@ export function Footer() {
           <div>
             <h4
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 14,
                 color: "#fff",
@@ -279,7 +279,7 @@ export function Footer() {
                 </svg>
                 <span
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontSize: 13,
                     color: "rgba(255,255,255,0.5)",
                     lineHeight: 1.5,
@@ -306,7 +306,7 @@ export function Footer() {
         >
           <span
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontSize: 13,
               color: "rgba(255,255,255,0.35)",
             }}
@@ -315,7 +315,7 @@ export function Footer() {
           </span>
           <span
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontSize: 13,
               color: "rgba(255,255,255,0.35)",
             }}

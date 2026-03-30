@@ -19,7 +19,7 @@ export function Destinations() {
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <span
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 12,
                 letterSpacing: "2px",
@@ -33,7 +33,7 @@ export function Destinations() {
             </span>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(32px, 4vw, 48px)",
                 fontWeight: 800,
                 color: "#0A1F44",
@@ -85,7 +85,7 @@ export function Destinations() {
                 <div style={{ fontSize: 44, marginBottom: 14 }}>{d.flag}</div>
                 <div
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 16,
                     color: "#0A1F44",
@@ -96,7 +96,7 @@ export function Destinations() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 600,
                     fontSize: 13,
                     color: d.color,

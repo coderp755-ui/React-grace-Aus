@@ -153,7 +153,7 @@ export function Hero() {
 
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontSize: 17,
               lineHeight: 1.7,
               color: "rgba(255,255,255,0.95)",
@@ -189,7 +189,7 @@ export function Hero() {
                 cursor: "pointer",
                 padding: "14px 32px",
                 borderRadius: 12,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 15,
                 boxShadow: "0 8px 32px rgba(21,101,192,0.5)",
@@ -228,7 +228,7 @@ export function Hero() {
                 cursor: "pointer",
                 padding: "14px 32px",
                 borderRadius: 12,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
                 fontSize: 15,
                 backdropFilter: "blur(8px)",
@@ -291,7 +291,7 @@ export function Hero() {
               </div>
               <div
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: 13,
                   color: "rgba(255,255,255,0.6)",
                   marginTop: 6,

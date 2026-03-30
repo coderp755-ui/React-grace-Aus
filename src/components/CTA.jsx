@@ -47,7 +47,7 @@ export function CTA() {
           <div style={{ position: "relative" }}>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
                 fontSize: "clamp(28px, 4vw, 44px)",
                 color: "#fff",
@@ -61,7 +61,7 @@ export function CTA() {
             </h2>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 17,
                 color: "rgba(255,255,255,0.72)",
                 marginBottom: 40,
@@ -89,7 +89,7 @@ export function CTA() {
                   cursor: "pointer",
                   padding: "14px 36px",
                   borderRadius: 12,
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
                   fontSize: 15,
                   transition: "all 0.25s",
@@ -118,7 +118,7 @@ export function CTA() {
                   cursor: "pointer",
                   padding: "14px 36px",
                   borderRadius: 12,
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontWeight: 600,
                   fontSize: 15,
                   transition: "all 0.25s",

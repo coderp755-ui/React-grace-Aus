@@ -87,7 +87,7 @@ export function Navbar() {
           </div>
           <span
             style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
               fontSize: 18,
               color: "#0A1F44",
@@ -118,7 +118,7 @@ export function Navbar() {
                 cursor: "pointer",
                 padding: "8px 14px",
                 borderRadius: 8,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
                 fontSize: 14,
                 color: scrolled ? "#2D3748" : "#fff",
@@ -153,7 +153,7 @@ export function Navbar() {
               cursor: "pointer",
               padding: "10px 20px",
               borderRadius: 10,
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontWeight: 600,
               fontSize: 13,
               boxShadow: "0 4px 16px rgba(21,101,192,0.3)",
@@ -223,7 +223,7 @@ export function Navbar() {
                 textAlign: "left",
                 padding: "12px 8px",
                 borderRadius: 8,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
                 fontSize: 15,
                 color: "#2D3748",

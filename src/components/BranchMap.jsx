@@ -80,7 +80,7 @@ export function BranchMap() {
             <Popup>
               <div
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   minWidth: "200px",
                 }}
               >
