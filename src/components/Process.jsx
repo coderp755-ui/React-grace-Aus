@@ -54,7 +54,7 @@ export function Process() {
           <div style={{ textAlign: "center", marginBottom: 72 }}>
             <span
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 12,
                 letterSpacing: "2px",
@@ -68,7 +68,7 @@ export function Process() {
             </span>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(32px, 4vw, 48px)",
                 fontWeight: 800,
                 color: "#fff",
@@ -106,7 +106,7 @@ export function Process() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 800,
                     fontSize: 22,
                     color: "#fff",
@@ -130,7 +130,7 @@ export function Process() {
                 </div>
                 <h3
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 15,
                     color: "#fff",
@@ -141,7 +141,7 @@ export function Process() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontSize: 13,
                     color: "rgba(255,255,255,0.6)",
                     lineHeight: 1.6,

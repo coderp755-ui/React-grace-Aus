@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FadeIn } from "../components/FadeIn";
 import { ICONS } from "../components/Icon";
 
@@ -30,17 +31,44 @@ const SERVICES = [
 ];
 
 export function Services() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto scroll effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SERVICES.length);
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % SERVICES.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + SERVICES.length) % SERVICES.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
   return (
     <section
       id="services"
-      style={{ background: "#F7F9FC", padding: "100px 24px", width: "100%" }}
+      style={{ 
+        background: "linear-gradient(135deg, #F7F9FC 0%, #E3F2FD 50%, #BBDEFB 100%)", 
+        padding: "100px 24px", 
+        width: "100%" 
+      }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <FadeIn>
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <span
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 12,
                 letterSpacing: "2px",
@@ -54,7 +82,7 @@ export function Services() {
             </span>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(32px, 4vw, 48px)",
                 fontWeight: 800,
                 color: "#0A1F44",
@@ -67,93 +95,206 @@ export function Services() {
           </div>
         </FadeIn>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: 24,
-          }}
-        >
-          {SERVICES.map((s, i) => (
-            <FadeIn key={i} delay={i * 0.08}>
+        {/* Carousel Container */}
+        <div style={{ position: "relative", overflow: "hidden", padding: "0 60px" }}>
+          {/* Carousel Track */}
+          <div
+            style={{
+              display: "flex",
+              transition: "transform 0.5s ease-in-out",
+              transform: `translateX(-${currentIndex * 100}%)`,
+            }}
+          >
+            {SERVICES.map((s, i) => (
               <div
+                key={i}
                 style={{
-                  background: "#fff",
-                  borderRadius: 20,
-                  padding: "36px 28px",
-                  boxShadow: "0 2px 20px rgba(10,31,68,0.06)",
-                  border: "1px solid #EBF0FB",
-                  transition: "all 0.3s ease",
-                  cursor: "default",
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-6px)";
-                  e.currentTarget.style.boxShadow =
-                    "0 12px 40px rgba(21,101,192,0.14)";
-                  e.currentTarget.style.borderColor = "#BBDEFB";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow =
-                    "0 2px 20px rgba(10,31,68,0.06)";
-                  e.currentTarget.style.borderColor = "#EBF0FB";
+                  minWidth: "100%",
+                  padding: "0 12px",
+                  boxSizing: "border-box",
                 }}
               >
                 <div
                   style={{
-                    width: 52,
-                    height: 52,
-                    borderRadius: 14,
-                    background: "linear-gradient(135deg, #E3F2FD, #BBDEFB)",
+                    background: "#fff",
+                    borderRadius: 20,
+                    padding: "48px 40px",
+                    boxShadow: "0 4px 30px rgba(10,31,68,0.1)",
+                    border: "1px solid #EBF0FB",
+                    height: "100%",
                     display: "flex",
+                    flexDirection: "column",
                     alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: 20,
+                    maxWidth: 600,
+                    margin: "0 auto",
                   }}
                 >
-                  <svg
-                    width={22}
-                    height={22}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#1565C0"
-                    strokeWidth={1.8}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <div
+                    style={{
+                      width: 72,
+                      height: 72,
+                      borderRadius: 18,
+                      background: "linear-gradient(135deg, #E3F2FD, #BBDEFB)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: 28,
+                    }}
                   >
-                    <path d={ICONS[s.icon]} />
-                  </svg>
+                    <svg
+                      width={32}
+                      height={32}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#1565C0"
+                      strokeWidth={1.8}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d={ICONS[s.icon]} />
+                    </svg>
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontWeight: 700,
+                      fontSize: 24,
+                      color: "#0A1F44",
+                      marginBottom: 16,
+                      textAlign: "center",
+                    }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 16,
+                      color: "#64748B",
+                      lineHeight: 1.8,
+                      margin: 0,
+                      textAlign: "center",
+                    }}
+                  >
+                    {s.desc}
+                  </p>
                 </div>
-                <h3
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontWeight: 700,
-                    fontSize: 17,
-                    color: "#0A1F44",
-                    marginBottom: 10,
-                    textAlign: "center",
-                  }}
-                >
-                  {s.title}
-                </h3>
-                <p
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 14,
-                    color: "#64748B",
-                    lineHeight: 1.65,
-                    margin: 0,
-                    textAlign: "center",
-                  }}
-                >
-                  {s.desc}
-                </p>
               </div>
-            </FadeIn>
+            ))}
+          </div>
+
+          {/* Previous Button */}
+          <button
+            onClick={prevSlide}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "#fff",
+              border: "2px solid #1565C0",
+              borderRadius: "50%",
+              width: 48,
+              height: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(21,101,192,0.2)",
+              transition: "all 0.3s",
+              zIndex: 10,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#1565C0";
+              e.currentTarget.querySelector("svg").style.stroke = "#fff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.querySelector("svg").style.stroke = "#1565C0";
+            }}
+          >
+            <svg
+              width={20}
+              height={20}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1565C0"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+              style={{ transition: "stroke 0.3s" }}
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Next Button */}
+          <button
+            onClick={nextSlide}
+            style={{
+              position: "absolute",
+              right: 0,
+              top: "50%",
+              transform: "translateY(-50%)",
+              background: "#fff",
+              border: "2px solid #1565C0",
+              borderRadius: "50%",
+              width: 48,
+              height: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              boxShadow: "0 4px 12px rgba(21,101,192,0.2)",
+              transition: "all 0.3s",
+              zIndex: 10,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#1565C0";
+              e.currentTarget.querySelector("svg").style.stroke = "#fff";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.querySelector("svg").style.stroke = "#1565C0";
+            }}
+          >
+            <svg
+              width={20}
+              height={20}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#1565C0"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+              style={{ transition: "stroke 0.3s" }}
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Dots Indicator */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 10,
+            marginTop: 40,
+          }}
+        >
+          {SERVICES.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goToSlide(i)}
+              style={{
+                width: currentIndex === i ? 32 : 10,
+                height: 10,
+                borderRadius: 5,
+                background: currentIndex === i ? "#1565C0" : "#BBDEFB",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s",
+              }}
+            />
           ))}
         </div>
       </div>

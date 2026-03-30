@@ -46,7 +46,7 @@ export function Blog() {
             <div>
               <span
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontWeight: 700,
                   fontSize: 12,
                   letterSpacing: "2px",
@@ -60,7 +60,7 @@ export function Blog() {
               </span>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: "clamp(32px, 4vw, 48px)",
                   fontWeight: 800,
                   color: "#0A1F44",
@@ -77,7 +77,7 @@ export function Blog() {
                 cursor: "pointer",
                 padding: "10px 24px",
                 borderRadius: 10,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
                 fontSize: 14,
                 color: "#1565C0",
@@ -145,7 +145,7 @@ export function Blog() {
                       style={{
                         background: "#E3F2FD",
                         color: "#1565C0",
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                         fontWeight: 700,
                         fontSize: 11,
                         padding: "4px 12px",
@@ -157,7 +157,7 @@ export function Blog() {
                     </span>
                     <span
                       style={{
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                         fontSize: 12,
                         color: "#94A3B8",
                       }}
@@ -167,7 +167,7 @@ export function Blog() {
                   </div>
                   <h3
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                       fontWeight: 700,
                       fontSize: 17,
                       color: "#0A1F44",
@@ -179,7 +179,7 @@ export function Blog() {
                   </h3>
                   <p
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                       fontSize: 14,
                       color: "#64748B",
                       lineHeight: 1.65,
@@ -190,7 +190,7 @@ export function Blog() {
                   </p>
                   <span
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                       fontWeight: 700,
                       fontSize: 13,
                       color: "#1565C0",

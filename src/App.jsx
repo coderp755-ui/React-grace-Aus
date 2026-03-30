@@ -16,7 +16,7 @@ export default function App() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { scroll-behavior: smooth; width: 100%; max-width: 100%; overflow-x: hidden; margin: 0 !important; padding: 0 !important; }
-        body { font-family: 'DM Sans', sans-serif; }
+        body { font-family: 'Poppins', sans-serif; }
         #root { width: 100%; max-width: 100%; margin: 0 !important; padding: 0 !important; }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(32px); }

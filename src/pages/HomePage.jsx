@@ -7,12 +7,14 @@ import { Process } from "../components/Process";
 import { Blog } from "../components/Blog";
 import { Contact } from "../components/Contact";
 import { BranchMap } from "../components/BranchMap";
+import { Team } from "../components/Team";
 export default function HomePage() {
   return (
     <>
       <Hero />
       <Services />
       <Destinations />
+      <Team />
       <Process />
       <Testimonials />
       <Blog />

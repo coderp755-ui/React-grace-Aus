@@ -153,7 +153,7 @@ export function Hero() {
 
           <p
             style={{
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontSize: 17,
               lineHeight: 1.7,
               color: "rgba(255,255,255,0.95)",
@@ -189,7 +189,7 @@ export function Hero() {
                 cursor: "pointer",
                 padding: "14px 32px",
                 borderRadius: 12,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 15,
                 boxShadow: "0 8px 32px rgba(21,101,192,0.5)",
@@ -228,7 +228,7 @@ export function Hero() {
                 cursor: "pointer",
                 padding: "14px 32px",
                 borderRadius: 12,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 600,
                 fontSize: 15,
                 backdropFilter: "blur(8px)",
@@ -291,7 +291,7 @@ export function Hero() {
               </div>
               <div
                 style={{
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: 13,
                   color: "rgba(255,255,255,0.6)",
                   marginTop: 6,
@@ -313,9 +313,16 @@ export function Hero() {
           xmlns="http://www.w3.org/2000/svg"
           style={{ display: "block" }}
         >
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#F7F9FC" />
+              <stop offset="50%" stopColor="#E3F2FD" />
+              <stop offset="100%" stopColor="#BBDEFB" />
+            </linearGradient>
+          </defs>
           <path
             d="M0 80L60 70C120 60 240 40 360 36.7C480 33 600 47 720 53.3C840 60 960 60 1080 53.3C1200 47 1320 33 1380 26.7L1440 20V80H0Z"
-            fill="#F7F9FC"
+            fill="url(#waveGradient)"
           />
         </svg>
       </div>

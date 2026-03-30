@@ -32,7 +32,7 @@ export function Testimonials() {
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <span
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 12,
                 letterSpacing: "2px",
@@ -46,7 +46,7 @@ export function Testimonials() {
             </span>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: "clamp(32px, 4vw, 48px)",
                 fontWeight: 800,
                 color: "#0A1F44",
@@ -116,7 +116,7 @@ export function Testimonials() {
                 </div>
                 <p
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontSize: 15,
                     lineHeight: 1.7,
                     color: "#475569",
@@ -136,7 +136,7 @@ export function Testimonials() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                       fontWeight: 700,
                       fontSize: 14,
                       color: "#fff",
@@ -148,7 +148,7 @@ export function Testimonials() {
                   <div>
                     <div
                       style={{
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                         fontWeight: 700,
                         fontSize: 15,
                         color: "#0A1F44",
@@ -158,7 +158,7 @@ export function Testimonials() {
                     </div>
                     <div
                       style={{
-                        fontFamily: "'DM Sans', sans-serif",
+                        fontFamily: "'Poppins', sans-serif",
                         fontSize: 12,
                         color: "#94A3B8",
                       }}

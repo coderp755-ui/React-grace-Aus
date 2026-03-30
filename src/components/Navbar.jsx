@@ -62,40 +62,16 @@ export function Navbar() {
             textDecoration: "none",
           }}
         >
-          <div
+          <img 
+            src="../src/assets/G.png" 
+            alt="Grace International Logo" 
             style={{
-              width: 36,
-              height: 36,
-              borderRadius: 10,
-              background: "linear-gradient(135deg, #0A3B6B 0%, #1565C0 100%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: 100,
+              height: 65,
+              objectFit: "contain",
             }}
-          >
-            <svg
-              width={18}
-              height={18}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth={2}
-              strokeLinecap="round"
-            >
-              <path d={ICONS.globe} />
-            </svg>
-          </div>
-          <span
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 700,
-              fontSize: 18,
-              color: "#0A1F44",
-              letterSpacing: "-0.3px",
-            }}
-          >
-            Grace<span style={{ color: "#1565C0" }}>Intl</span>
-          </span>
+          />
+      
         </Link>
 
         {/* Desktop nav */}
@@ -118,7 +94,7 @@ export function Navbar() {
                 cursor: "pointer",
                 padding: "8px 14px",
                 borderRadius: 8,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
                 fontSize: 14,
                 color: scrolled ? "#2D3748" : "#fff",
@@ -153,7 +129,7 @@ export function Navbar() {
               cursor: "pointer",
               padding: "10px 20px",
               borderRadius: 10,
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontWeight: 600,
               fontSize: 13,
               boxShadow: "0 4px 16px rgba(21,101,192,0.3)",
@@ -223,7 +199,7 @@ export function Navbar() {
                 textAlign: "left",
                 padding: "12px 8px",
                 borderRadius: 8,
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 500,
                 fontSize: 15,
                 color: "#2D3748",

@@ -36,7 +36,7 @@ export function Contact() {
           <div>
             <span
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
                 fontSize: 12,
                 letterSpacing: "2px",
@@ -50,7 +50,7 @@ export function Contact() {
             </span>
             <h2
               style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
                 fontSize: "clamp(28px, 3.5vw, 44px)",
                 color: "#0A1F44",
@@ -62,7 +62,7 @@ export function Contact() {
             </h2>
             <p
               style={{
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 16,
                 color: "#64748B",
                 lineHeight: 1.7,
@@ -113,7 +113,7 @@ export function Contact() {
                 </div>
                 <span
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontSize: 15,
                     color: "#334155",
                     fontWeight: 500,
@@ -164,7 +164,7 @@ export function Contact() {
                 </div>
                 <h3
                   style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 22,
                     color: "#0A1F44",
@@ -175,7 +175,7 @@ export function Contact() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     color: "#64748B",
                     fontSize: 14,
                   }}
@@ -189,7 +189,7 @@ export function Contact() {
               >
                 <h3
                   style={{
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 20,
                     color: "#0A1F44",
@@ -216,7 +216,7 @@ export function Contact() {
                       padding: "13px 16px",
                       borderRadius: 10,
                       border: "1.5px solid #E2E8F0",
-                      fontFamily: "'DM Sans', sans-serif",
+                      fontFamily: "'Poppins', sans-serif",
                       fontSize: 14,
                       color: "#334155",
                       background: "#fff",
@@ -244,7 +244,7 @@ export function Contact() {
                     padding: "13px 16px",
                     borderRadius: 10,
                     border: "1.5px solid #E2E8F0",
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontSize: 14,
                     color: "#334155",
                     background: "#fff",
@@ -269,7 +269,7 @@ export function Contact() {
                     cursor: "pointer",
                     padding: "14px",
                     borderRadius: 10,
-                    fontFamily: "'DM Sans', sans-serif",
+                    fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 15,
                     transition: "all 0.25s",
