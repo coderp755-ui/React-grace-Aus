@@ -95,7 +95,7 @@ export function Hero() {
       >
         {/* Left */}
         <div>
-          <div
+          {/* <div
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -118,9 +118,9 @@ export function Hero() {
                 textTransform: "uppercase",
               }}
             >
-              ✦ Trusted by 50,000+ students
+               Trusted by 50,000+ students
             </span>
-          </div>
+          </div> */}
 
           <h1
             style={{
@@ -129,6 +129,7 @@ export function Hero() {
               fontWeight: 800,
               lineHeight: 1.12,
               color: "#fff",
+              maxWidth: "100%",
               marginBottom: 24,
               animation: "fadeUp 0.9s ease 0.1s both",
               textShadow: "0 2px 20px rgba(0,0,0,0.3)",
@@ -141,6 +142,7 @@ export function Hero() {
                 background: "linear-gradient(90deg, #64B5F6, #90CAF9)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
+                maxWidth: "100%",
               }}
             >
               with Expert
@@ -159,6 +161,8 @@ export function Hero() {
               maxWidth: 440,
               animation: "fadeUp 1s ease 0.2s both",
               textShadow: "0 1px 10px rgba(0,0,0,0.3)",
+              maxWidth: "100%",
+              textAlign: "center",
             }}
           >
             From choosing the right university to landing your visa — Grace
@@ -173,6 +177,7 @@ export function Hero() {
               flexWrap: "wrap",
               animation: "fadeUp 1s ease 0.3s both",
               alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Link
