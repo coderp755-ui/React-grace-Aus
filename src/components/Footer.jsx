@@ -1,43 +1,130 @@
+// src/sections/Footer.jsx
+// Fully responsive footer — works cleanly on desktop, tablet, and mobile
+
 import { Link } from "react-router-dom";
 import { ICONS } from "../components/Icon";
 
 const NAV_LINKS = [
-  { label: "Home", path: "/" },
+  { label: "Home",         path: "/" },
   { label: "Study Abroad", path: "/destinations" },
-  { label: "Services", path: "/services" },
-  { label: "Process", path: "/process" },
+  { label: "Services",     path: "/services" },
+  { label: "Process",      path: "/process" },
   { label: "Testimonials", path: "/testimonials" },
-  { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  { label: "Blog",         path: "/blog" },
+  { label: "Contact",      path: "/contact" },
 ];
 
 const SERVICES = [
-  {
-    icon: "mortarboard",
-    title: "University Admission",
-    desc: "Expert guidance for securing admission into top universities worldwide with personalised counselling.",
-  },
-  {
-    icon: "visa",
-    title: "Visa Assistance",
-    desc: "Comprehensive visa support with high success rates across student, work, and migration visas.",
-  },
-  {
-    icon: "coaching",
-    title: "IELTS / PTE Coaching",
-    desc: "Intensive coaching programs designed to maximise your English proficiency test scores.",
-  },
-  {
-    icon: "career",
-    title: "Career Counselling",
-    desc: "Strategic career planning aligned with your goals, course choices, and destination country.",
-  },
-  {
-    icon: "scholarship",
-    title: "Scholarship Guidance",
-    desc: "Identify and apply for scholarships that significantly reduce your study-abroad costs.",
-  },
+  { title: "University Admission" },
+  { title: "Visa Assistance" },
+  { title: "IELTS / PTE Coaching" },
+  { title: "Career Counselling" },
+  { title: "Scholarship Guidance" },
 ];
+
+const CONTACT_INFO = [
+  { icon: "phone",  text: "+61 (03) 9662 9020" },
+  { icon: "mail",   text: "melbourne@graceintlgroup.com" },
+  { icon: "mappin", text: "Melbourne, Sydney & 45 branches" },
+];
+
+const SOCIAL = ["facebook", "twitter", "linkedin"];
+
+// ── Responsive breakpoints via injected <style> ──────────────────────────
+const FOOTER_STYLES = `
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+  }
+
+  /* Tablet: 2 columns */
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+  }
+
+  /* Mobile: single column */
+  @media (max-width: 520px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    /* Force every column to left-align on mobile */
+    .footer-grid > div {
+      text-align: left !important;
+    }
+    .footer-grid > div p,
+    .footer-grid > div span {
+      text-align: left !important;
+    }
+    .footer-grid > div img {
+      margin-left: 0 !important;
+      margin-right: auto !important;
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  @media (max-width: 520px) {
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+  }
+
+  .footer-link {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .footer-link:hover { color: #64B5F6; }
+
+  .footer-service-item {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-align: left;
+  }
+  .footer-service-item:hover { color: #64B5F6; }
+
+  .footer-social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-shrink: 0;
+  }
+  .footer-social-btn:hover {
+    background: #1565C0;
+    border-color: #1565C0;
+  }
+`;
 
 export function Footer() {
   return (
@@ -46,99 +133,53 @@ export function Footer() {
         background: "#0A1F44",
         padding: "72px 24px 32px",
         width: "100%",
+        boxSizing: "border-box",
       }}
     >
+      <style>{FOOTER_STYLES}</style>
+
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr 1fr 1fr",
-            gap: 48,
-            marginBottom: 56,
-          }}
-        >
-          {/* Brand */}
-          <div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                marginBottom: 20,
-              }}
-            >
-              <div
+
+        {/* ── 4-column grid (collapses on smaller screens) ─────────────── */}
+        <div className="footer-grid">
+
+          {/* Brand column */}
+          <div style={{ textAlign: "left" }}>
+            {/* Logo */}
+            <div style={{ marginBottom: 20 }}>
+              <img
+                src="../src/assets/G.png"
+                alt="Grace International Logo"
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: 10,
-                  background: "linear-gradient(135deg, #1565C0, #42A5F5)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
+                  width: 90,
+                  height: 90,
+                  objectFit: "contain",
+                  display: "block",
+                  marginLeft: 0,
                 }}
-              >
-                <svg
-                  width={18}
-                  height={18}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                >
-                  <path d={ICONS.globe} />
-                </svg>
-              </div>
-              <span
-                style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontWeight: 700,
-                  fontSize: 18,
-                  color: "#fff",
-                }}
-              >
-                Grace<span style={{ color: "#64B5F6" }}>Intl</span>
-              </span>
+              />
             </div>
+
+            {/* Tagline */}
             <p
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: 14,
-                color: "rgba(255,255,255,0.5)",
-                lineHeight: 1.7,
+                color: "rgba(255,255,255,0.55)",
+                lineHeight: 1.75,
                 marginBottom: 24,
                 maxWidth: 280,
+                textAlign: "left",
               }}
             >
-              Where we connect life & learning. Trusted by 50,000+ students
+              Where we connect life &amp; learning. Trusted by 50,000+ students
               across the globe for 19+ years.
             </p>
-            <div style={{ display: "flex", gap: 10 }}>
-              {["facebook", "twitter", "linkedin"].map((s) => (
-                <div
-                  key={s}
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 10,
-                    background: "rgba(255,255,255,0.07)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "#1565C0";
-                    e.currentTarget.style.borderColor = "#1565C0";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255,255,255,0.07)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)";
-                  }}
-                >
+
+            {/* Social icons */}
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "flex-start" }}>
+              {SOCIAL.map((s) => (
+                <button key={s} className="footer-social-btn" aria-label={s}>
                   <svg
                     width={15}
                     height={15}
@@ -151,7 +192,7 @@ export function Footer() {
                   >
                     <path d={ICONS[s]} />
                   </svg>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -162,36 +203,17 @@ export function Footer() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
-                fontSize: 14,
+                fontSize: 12,
                 color: "#fff",
                 marginBottom: 20,
-                letterSpacing: "1px",
+                letterSpacing: "1.5px",
                 textTransform: "uppercase",
               }}
             >
               Quick Links
             </h4>
             {NAV_LINKS.map((l) => (
-              <Link
-                key={l.label}
-                to={l.path}
-                style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: 14,
-                  color: "rgba(255,255,255,0.5)",
-                  marginBottom: 10,
-                  cursor: "pointer",
-                  transition: "color 0.2s",
-                  textDecoration: "none",
-                  display: "block",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#64B5F6";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "rgba(255,255,255,0.5)";
-                }}
-              >
+              <Link key={l.label} to={l.path} className="footer-link">
                 {l.label}
               </Link>
             ))}
@@ -203,33 +225,17 @@ export function Footer() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
-                fontSize: 14,
+                fontSize: 12,
                 color: "#fff",
                 marginBottom: 20,
-                letterSpacing: "1px",
+                letterSpacing: "1.5px",
                 textTransform: "uppercase",
               }}
             >
               Services
             </h4>
             {SERVICES.map((s) => (
-              <div
-                key={s.title}
-                style={{
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: 14,
-                  color: "rgba(255,255,255,0.5)",
-                  marginBottom: 10,
-                  cursor: "pointer",
-                  transition: "color 0.2s",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = "#64B5F6";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = "rgba(255,255,255,0.5)";
-                }}
-              >
+              <div key={s.title} className="footer-service-item">
                 {s.title}
               </div>
             ))}
@@ -241,48 +247,60 @@ export function Footer() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 700,
-                fontSize: 14,
+                fontSize: 12,
                 color: "#fff",
                 marginBottom: 20,
-                letterSpacing: "1px",
+                letterSpacing: "1.5px",
                 textTransform: "uppercase",
               }}
             >
               Contact
             </h4>
-            {[
-              { icon: "phone", text: "+61 (03) 9662 9020" },
-              { icon: "mail", text: "melbourne@graceintlgroup.com" },
-              { icon: "mappin", text: "Melbourne, Sydney & 45 branches" },
-            ].map((c, i) => (
+            {CONTACT_INFO.map((c, i) => (
               <div
                 key={i}
                 style={{
                   display: "flex",
-                  gap: 10,
-                  marginBottom: 14,
+                  gap: 12,
+                  marginBottom: 16,
                   alignItems: "flex-start",
                 }}
               >
-                <svg
-                  width={15}
-                  height={15}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="rgba(100,181,246,0.8)"
-                  strokeWidth={1.8}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  style={{ marginTop: 2, flexShrink: 0 }}
+                {/* Icon container — fixed size so it never squishes */}
+                <div
+                  style={{
+                    width: 32,
+                    height: 32,
+                    borderRadius: 8,
+                    background: "rgba(100,181,246,0.12)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexShrink: 0,
+                  }}
                 >
-                  <path d={ICONS[c.icon]} />
-                </svg>
+                  <svg
+                    width={14}
+                    height={14}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#64B5F6"
+                    strokeWidth={1.8}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d={ICONS[c.icon]} />
+                  </svg>
+                </div>
+
                 <span
                   style={{
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: 13,
-                    color: "rgba(255,255,255,0.5)",
-                    lineHeight: 1.5,
+                    color: "rgba(255,255,255,0.55)",
+                    lineHeight: 1.6,
+                    paddingTop: 6,
+                    wordBreak: "break-word",
                   }}
                 >
                   {c.text}
@@ -290,39 +308,38 @@ export function Footer() {
               </div>
             ))}
           </div>
+
         </div>
 
-        {/* Divider */}
+        {/* ── Divider line ─────────────────────────────────────────────── */}
         <div
           style={{
             borderTop: "1px solid rgba(255,255,255,0.08)",
             paddingTop: 24,
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 12,
           }}
         >
-          <span
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: 13,
-              color: "rgba(255,255,255,0.35)",
-            }}
-          >
-            © 2025 Grace International Group. All rights reserved.
-          </span>
-          <span
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: 13,
-              color: "rgba(255,255,255,0.35)",
-            }}
-          >
-            MARA Registered Migration Agents
-          </span>
+          <div className="footer-bottom">
+            <span
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 12,
+                color: "rgba(255,255,255,0.3)",
+              }}
+            >
+              © 2025 Grace International Group. All rights reserved.
+            </span>
+            <span
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: 12,
+                color: "rgba(255,255,255,0.3)",
+              }}
+            >
+              MARA Registered Migration Agents
+            </span>
+          </div>
         </div>
+
       </div>
     </footer>
   );

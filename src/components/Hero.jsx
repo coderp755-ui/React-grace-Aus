@@ -313,9 +313,16 @@ export function Hero() {
           xmlns="http://www.w3.org/2000/svg"
           style={{ display: "block" }}
         >
+          <defs>
+            <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#F7F9FC" />
+              <stop offset="50%" stopColor="#E3F2FD" />
+              <stop offset="100%" stopColor="#BBDEFB" />
+            </linearGradient>
+          </defs>
           <path
             d="M0 80L60 70C120 60 240 40 360 36.7C480 33 600 47 720 53.3C840 60 960 60 1080 53.3C1200 47 1320 33 1380 26.7L1440 20V80H0Z"
-            fill="#F7F9FC"
+            fill="url(#waveGradient)"
           />
         </svg>
       </div>

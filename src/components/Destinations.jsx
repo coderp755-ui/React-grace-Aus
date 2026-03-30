@@ -29,7 +29,7 @@ export function Destinations() {
                 marginBottom: 12,
               }}
             >
-              Where We Send Students
+          
             </span>
             <h2
               style={{

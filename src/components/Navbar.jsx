@@ -62,40 +62,16 @@ export function Navbar() {
             textDecoration: "none",
           }}
         >
-          <div
+          <img 
+            src="../src/assets/G.png" 
+            alt="Grace International Logo" 
             style={{
-              width: 36,
-              height: 36,
-              borderRadius: 10,
-              background: "linear-gradient(135deg, #0A3B6B 0%, #1565C0 100%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: 100,
+              height: 65,
+              objectFit: "contain",
             }}
-          >
-            <svg
-              width={18}
-              height={18}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth={2}
-              strokeLinecap="round"
-            >
-              <path d={ICONS.globe} />
-            </svg>
-          </div>
-          <span
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 700,
-              fontSize: 18,
-              color: "#0A1F44",
-              letterSpacing: "-0.3px",
-            }}
-          >
-            Grace<span style={{ color: "#1565C0" }}>Intl</span>
-          </span>
+          />
+      
         </Link>
 
         {/* Desktop nav */}

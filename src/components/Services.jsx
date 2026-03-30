@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FadeIn } from "../components/FadeIn";
 import { ICONS } from "../components/Icon";
 
@@ -33,6 +33,15 @@ const SERVICES = [
 export function Services() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Auto scroll effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SERVICES.length);
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % SERVICES.length);
   };
@@ -48,7 +57,11 @@ export function Services() {
   return (
     <section
       id="services"
-      style={{ background: "#F7F9FC", padding: "100px 24px", width: "100%" }}
+      style={{ 
+        background: "linear-gradient(135deg, #F7F9FC 0%, #E3F2FD 50%, #BBDEFB 100%)", 
+        padding: "100px 24px", 
+        width: "100%" 
+      }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <FadeIn>
