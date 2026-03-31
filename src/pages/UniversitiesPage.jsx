@@ -1,5 +1,5 @@
 import { Universities } from "../components/Universities";
-import { CTA } from "../components/CTA";
+// import { CTA } from "../components/CTA";
 
 export default function UniversitiesPage() {
   return (
@@ -11,7 +11,7 @@ export default function UniversitiesPage() {
         }}
       />
       <Universities />
-      <CTA />
+      {/* <CTA /> */}
     </>
   );
 }
