@@ -9,14 +9,17 @@ import "leaflet/dist/leaflet.css";
 // ── Fix default marker icons (Vite/Webpack asset issue) ───────────────────
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
-  iconUrl:       "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
-  shadowUrl:     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
 });
 
 // ── Custom SVG pin marker ─────────────────────────────────────────────────
 function createPin(isActive = false) {
-  const bg     = isActive ? "#0A1F44" : "#1565C0";
+  const bg = isActive ? "#0A1F44" : "#1565C0";
   const border = isActive ? "#64B5F6" : "#fff";
   return L.divIcon({
     className: "",
@@ -42,8 +45,8 @@ function createPin(isActive = false) {
           transform: rotate(0deg);
         "></div>
       </div>`,
-    iconSize:    [32, 40],
-    iconAnchor:  [16, 40],
+    iconSize: [32, 40],
+    iconAnchor: [16, 40],
     popupAnchor: [0, -44],
   });
 }
@@ -309,9 +312,9 @@ const STYLES = `
 `;
 
 export function BranchMap() {
-  const [activeId, setActiveId]   = useState(1);
-  const markerRefs                = useRef({});
-  const activeBranch              = BRANCHES.find((b) => b.id === activeId);
+  const [activeId, setActiveId] = useState(1);
+  const markerRefs = useRef({});
+  const activeBranch = BRANCHES.find((b) => b.id === activeId);
 
   const handleCardClick = (branch) => {
     setActiveId(branch.id);
@@ -326,7 +329,6 @@ export function BranchMap() {
       <style>{STYLES}</style>
 
       <div className="branch-inner">
-
         {/* ── Heading ──────────────────────────────────────────────────── */}
         <div className="branch-heading">
           <span className="branch-eyebrow">Our Presence</span>
@@ -339,7 +341,6 @@ export function BranchMap() {
 
         {/* ── Body: cards + map ────────────────────────────────────────── */}
         <div className="branch-body">
-
           {/* ── Branch card list ─────────────────────────────────────── */}
           <div className="branch-card-list">
             {BRANCHES.map((branch) => {
@@ -355,7 +356,9 @@ export function BranchMap() {
                       className="branch-dot"
                       style={{
                         background: isActive ? "#64B5F6" : "#1565C0",
-                        boxShadow: isActive ? "0 0 0 3px rgba(100,181,246,0.3)" : "none",
+                        boxShadow: isActive
+                          ? "0 0 0 3px rgba(100,181,246,0.3)"
+                          : "none",
                       }}
                     />
                     <span
@@ -368,8 +371,10 @@ export function BranchMap() {
                       <span
                         className="branch-hq-badge"
                         style={{
-                          background: isActive ? "rgba(255,255,255,0.15)" : "#E3F2FD",
-                          color:      isActive ? "#90CAF9"                 : "#1565C0",
+                          background: isActive
+                            ? "rgba(255,255,255,0.15)"
+                            : "#E3F2FD",
+                          color: isActive ? "#90CAF9" : "#1565C0",
                         }}
                       >
                         HQ
@@ -379,7 +384,9 @@ export function BranchMap() {
 
                   <p
                     className="branch-card-address"
-                    style={{ color: isActive ? "rgba(255,255,255,0.62)" : "#64748B" }}
+                    style={{
+                      color: isActive ? "rgba(255,255,255,0.62)" : "#64748B",
+                    }}
                   >
                     {branch.address}
                   </p>
@@ -427,50 +434,124 @@ export function BranchMap() {
                   key={branch.id}
                   position={[branch.lat, branch.lng]}
                   icon={createPin(branch.id === activeId)}
-                  ref={(r) => { if (r) markerRefs.current[branch.id] = r; }}
+                  ref={(r) => {
+                    if (r) markerRefs.current[branch.id] = r;
+                  }}
                   eventHandlers={{ click: () => setActiveId(branch.id) }}
                 >
                   <Popup>
-                    <div style={{ padding: "16px 18px", minWidth: 230, fontFamily: "'Poppins', sans-serif" }}>
+                    <div
+                      style={{
+                        padding: "16px 18px",
+                        minWidth: 230,
+                        fontFamily: "'Poppins', sans-serif",
+                      }}
+                    >
                       {/* Popup header */}
-                      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-                        <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#1565C0", flexShrink: 0 }} />
-                        <span style={{ fontWeight: 700, fontSize: 15, color: "#0A1F44" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                          marginBottom: 12,
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: 8,
+                            height: 8,
+                            borderRadius: "50%",
+                            background: "#1565C0",
+                            flexShrink: 0,
+                          }}
+                        />
+                        <span
+                          style={{
+                            fontWeight: 700,
+                            fontSize: 15,
+                            color: "#0A1F44",
+                          }}
+                        >
                           {branch.name}
                         </span>
                         {branch.primary && (
-                          <span style={{
-                            marginLeft: "auto",
-                            background: "#E3F2FD", color: "#1565C0",
-                            fontWeight: 700, fontSize: 9,
-                            letterSpacing: "1px", textTransform: "uppercase",
-                            padding: "2px 8px", borderRadius: 100,
-                          }}>
+                          <span
+                            style={{
+                              marginLeft: "auto",
+                              background: "#E3F2FD",
+                              color: "#1565C0",
+                              fontWeight: 700,
+                              fontSize: 9,
+                              letterSpacing: "1px",
+                              textTransform: "uppercase",
+                              padding: "2px 8px",
+                              borderRadius: 100,
+                            }}
+                          >
                             HQ
                           </span>
                         )}
                       </div>
 
                       {/* Address */}
-                      <p style={{ fontSize: 12, color: "#475569", margin: "0 0 6px", lineHeight: 1.5 }}>
-                        📍 <span style={{ color: "#334155" }}>{branch.address}</span>
+                      <p
+                        style={{
+                          fontSize: 12,
+                          color: "#475569",
+                          margin: "0 0 6px",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        📍{" "}
+                        <span style={{ color: "#334155" }}>
+                          {branch.address}
+                        </span>
                       </p>
 
                       {/* Phone */}
-                      <p style={{ fontSize: 12, color: "#475569", margin: "0 0 6px", lineHeight: 1.5 }}>
-                        📞 <span style={{ color: "#334155" }}>{branch.phone}</span>
+                      <p
+                        style={{
+                          fontSize: 12,
+                          color: "#475569",
+                          margin: "0 0 6px",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        📞{" "}
+                        <span style={{ color: "#334155" }}>{branch.phone}</span>
                       </p>
 
                       {/* Hotline — only for head office */}
                       {branch.hotline && (
-                        <p style={{ fontSize: 12, color: "#475569", margin: "0 0 6px", lineHeight: 1.5 }}>
-                          🔥 <span style={{ color: "#334155", fontWeight: 600 }}>Hotline: {branch.hotline}</span>
+                        <p
+                          style={{
+                            fontSize: 12,
+                            color: "#475569",
+                            margin: "0 0 6px",
+                            lineHeight: 1.5,
+                          }}
+                        >
+                          🔥{" "}
+                          <span style={{ color: "#334155", fontWeight: 600 }}>
+                            Hotline: {branch.hotline}
+                          </span>
                         </p>
                       )}
 
                       {/* Email */}
-                      <p style={{ fontSize: 12, color: "#475569", margin: "0 0 14px", lineHeight: 1.5 }}>
-                        ✉️ <a href={`mailto:${branch.email}`} style={{ color: "#1565C0", textDecoration: "none" }}>
+                      <p
+                        style={{
+                          fontSize: 12,
+                          color: "#475569",
+                          margin: "0 0 14px",
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        ✉️{" "}
+                        <a
+                          href={`mailto:${branch.email}`}
+                          style={{ color: "#1565C0", textDecoration: "none" }}
+                        >
                           {branch.email}
                         </a>
                       </p>
@@ -480,7 +561,8 @@ export function BranchMap() {
                         href={`mailto:${branch.email}`}
                         style={{
                           display: "block",
-                          background: "linear-gradient(135deg, #1565C0, #42A5F5)",
+                          background:
+                            "linear-gradient(135deg, #1565C0, #42A5F5)",
                           color: "#fff",
                           textDecoration: "none",
                           padding: "9px 14px",
@@ -499,18 +581,27 @@ export function BranchMap() {
             </MapContainer>
 
             {/* Hint pill */}
-            <div style={{
-              position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)",
-              background: "rgba(10,31,68,0.72)", color: "#fff",
-              fontSize: 11, fontFamily: "'Poppins', sans-serif",
-              padding: "5px 14px", borderRadius: 100,
-              backdropFilter: "blur(8px)", zIndex: 500,
-              pointerEvents: "none", whiteSpace: "nowrap",
-            }}>
+            <div
+              style={{
+                position: "absolute",
+                bottom: 14,
+                left: "50%",
+                transform: "translateX(-50%)",
+                background: "rgba(10,31,68,0.72)",
+                color: "#fff",
+                fontSize: 11,
+                fontFamily: "'Poppins', sans-serif",
+                padding: "5px 14px",
+                borderRadius: 100,
+                backdropFilter: "blur(8px)",
+                zIndex: 500,
+                pointerEvents: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
               Click a card or pin to explore
             </div>
           </div>
-
         </div>
       </div>
     </section>

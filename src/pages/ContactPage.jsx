@@ -1,4 +1,5 @@
 import { Contact } from "../components/Contact";
+import OurBranch from "../components/OurBranch";
 
 export default function ContactPage() {
   return (
@@ -10,6 +11,7 @@ export default function ContactPage() {
         }}
       />
       <Contact />
+      <OurBranch />
     </>
   );
 }

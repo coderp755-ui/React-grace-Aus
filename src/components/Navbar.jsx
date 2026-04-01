@@ -62,16 +62,15 @@ export function Navbar() {
             textDecoration: "none",
           }}
         >
-          <img 
-            src="../src/assets/G.png" 
-            alt="Grace International Logo" 
+          <img
+            src="../src/assets/G.png"
+            alt="Grace International Logo"
             style={{
               width: 100,
               height: 65,
               objectFit: "contain",
             }}
           />
-      
         </Link>
 
         {/* Desktop nav */}

@@ -20,7 +20,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      style={{ background: "#fff", padding: "100px 24px", width: "100%" }}
+      style={{
+        background: `url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1650&q=80") center/cover no-repeat`,
+        padding: "100px 24px",
+        width: "100%",
+      }}
     >
       <div
         style={{
@@ -30,6 +34,7 @@ export function Contact() {
           gridTemplateColumns: "1fr 1fr",
           gap: 64,
           alignItems: "start",
+          color: "#fff",
         }}
       >
         <FadeIn>
@@ -41,9 +46,9 @@ export function Contact() {
                 fontSize: 12,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "#1565C0",
                 display: "block",
                 marginBottom: 12,
+                color: "#FFD700",
               }}
             >
               Get in Touch
@@ -53,7 +58,6 @@ export function Contact() {
                 fontFamily: "'Poppins', sans-serif",
                 fontWeight: 800,
                 fontSize: "clamp(28px, 3.5vw, 44px)",
-                color: "#0A1F44",
                 marginBottom: 20,
                 lineHeight: 1.2,
               }}
@@ -64,9 +68,9 @@ export function Contact() {
               style={{
                 fontFamily: "'Poppins', sans-serif",
                 fontSize: 16,
-                color: "#64748B",
                 lineHeight: 1.7,
                 marginBottom: 40,
+                color: "#000000",
               }}
             >
               Our expert advisors are ready to guide you through every step of
@@ -84,6 +88,20 @@ export function Contact() {
                   alignItems: "center",
                   gap: 16,
                   marginBottom: 20,
+                  padding: "10px 12px",
+                  borderRadius: 12,
+                  transition: "all 0.3s",
+                  cursor: "pointer",
+                  background: "#E3F2FD",
+                  color: "#0A1F44",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#1565C0"; // hover background
+                  e.currentTarget.style.color = "#fff"; // hover font color
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#E3F2FD"; // original background
+                  e.currentTarget.style.color = "#0A1F44"; // original font color
                 }}
               >
                 <div
@@ -91,7 +109,7 @@ export function Contact() {
                     width: 44,
                     height: 44,
                     borderRadius: 12,
-                    background: "#E3F2FD",
+                    background: "rgba(255, 255, 255, 0.2)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -103,7 +121,7 @@ export function Contact() {
                     height={18}
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="#1565C0"
+                    stroke="#676664"
                     strokeWidth={1.8}
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -115,7 +133,6 @@ export function Contact() {
                   style={{
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: 15,
-                    color: "#334155",
                     fontWeight: 500,
                   }}
                 >
@@ -129,11 +146,12 @@ export function Contact() {
         <FadeIn delay={0.15}>
           <div
             style={{
-              background: "#F7F9FC",
+              background: "rgba(255, 255, 255, 0.95)",
               borderRadius: 24,
               padding: "40px",
               border: "1px solid #EBF0FB",
               boxShadow: "0 2px 20px rgba(10,31,68,0.05)",
+              color: "#0A1F44",
             }}
           >
             {sent ? (
@@ -167,7 +185,6 @@ export function Contact() {
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 22,
-                    color: "#0A1F44",
                     marginBottom: 8,
                   }}
                 >
@@ -176,7 +193,6 @@ export function Contact() {
                 <p
                   style={{
                     fontFamily: "'Poppins', sans-serif",
-                    color: "#64748B",
                     fontSize: 14,
                   }}
                 >
@@ -192,7 +208,6 @@ export function Contact() {
                     fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700,
                     fontSize: 20,
-                    color: "#0A1F44",
                     marginBottom: 8,
                   }}
                 >
