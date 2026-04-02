@@ -17,13 +17,13 @@ export default function HomePage() {
     <>
       <Hero />
       <WhyChooseGrace />
+      <BranchMap />
       <Services />
       {/* <Destinations /> */}
       <Team />
       <Process />
       <Testimonials />
       <Blog />
-      <BranchMap />
       <Faq />
       <CTA />
       <Contact />
