@@ -1,7 +1,7 @@
 // src/sections/BranchMap.jsx
 // "Our Offices Around the World" section with interactive Leaflet map + branch cards
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -238,6 +238,27 @@ export function BranchMap() {
   const markerRefs = useRef({});
   const activeBranch = BRANCHES.find((b) => b.id === activeId);
 
+  // Scroll animation state
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const handleCardClick = (branch) => {
     setActiveId(branch.id);
     setTimeout(() => {
@@ -247,14 +268,31 @@ export function BranchMap() {
   };
 
   return (
-    <section className="w-full bg-surface py-[100px] px-6 box-border">
+    <section
+      ref={sectionRef}
+      className="w-full bg-surface py-[100px] px-6 box-border"
+    >
       <div className="max-w-[1200px] mx-auto">
         {/* Heading */}
         <div className="text-center mb-14">
-          <h2 className="font-[Poppins] font-extrabold text-[clamp(28px,4vw,46px)] text-heading m-0 mb-3.5 leading-[1.15]">
+          <h2
+            className={`font-[Poppins] font-extrabold text-[clamp(28px,4vw,46px)] text-heading m-0 mb-3.5 leading-[1.15] transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+            style={{ transitionDelay: "200ms" }}
+          >
             Our Offices Around the World
           </h2>
-          <p className="font-poppins text-[15px] text-body max-w-[500px] mx-auto leading-[1.7]">
+          <p
+            className={`font-poppins text-[15px] text-body max-w-[500px] mx-auto leading-[1.7] transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+            style={{ transitionDelay: "400ms" }}
+          >
             With offices across Australia and New Zealand, expert guidance is
             never far away. Click a branch to explore.
           </p>
@@ -264,22 +302,32 @@ export function BranchMap() {
         <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-6 items-start">
           {/* Branch card list */}
           <div
-            className="flex flex-col gap-2.5 max-h-[480px] overflow-y-auto pr-0.5 md:grid-cols-1 grid grid-cols-2 sm:grid-cols-2 md:flex md:flex-col"
+            className={`flex flex-col gap-2.5 max-h-[480px] overflow-y-auto pr-0.5 md:grid-cols-1 grid grid-cols-2 sm:grid-cols-2 md:flex md:flex-col transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-10"
+            }`}
             style={{
               scrollbarWidth: "thin",
               scrollbarColor: "#BBDEFB #EBF4FF",
+              transitionDelay: "600ms",
             }}
           >
-            {BRANCHES.map((branch) => {
+            {BRANCHES.map((branch, index) => {
               const isActive = branch.id === activeId;
               return (
                 <div
                   key={branch.id}
-                  className={`rounded-[14px] py-4 px-[18px] cursor-pointer transition-all duration-[220ms] ease-in-out border-[1.5px] shadow-[0_2px_10px_rgba(10,31,68,0.05)] ${
+                  className={`rounded-[14px] py-4 px-[18px] cursor-pointer transition-all duration-[500ms] ease-out border-[1.5px] shadow-[0_2px_10px_rgba(10,31,68,0.05)] ${
+                    isVisible
+                      ? "opacity-100 translate-y-0"
+                      : "opacity-0 translate-y-5"
+                  } ${
                     isActive
                       ? "bg-gradient-to-br from-navy to-brand border-transparent shadow-[0_8px_28px_rgba(21,101,192,0.30)]"
                       : "bg-white border-surface-border hover:border-surface-bluer hover:translate-x-1 hover:shadow-[0_4px_18px_rgba(21,101,192,0.10)]"
                   }`}
+                  style={{ transitionDelay: `${700 + index * 50}ms` }}
                   onClick={() => handleCardClick(branch)}
                 >
                   <div className="flex items-center gap-2 mb-1.5">
@@ -340,7 +388,14 @@ export function BranchMap() {
           </div>
 
           {/* Leaflet map */}
-          <div className="rounded-[20px] overflow-hidden border border-[#E2ECF8] shadow-[0_8px_40px_rgba(10,31,68,0.10)] h-[480px] relative">
+          <div
+            className={`rounded-[20px] overflow-hidden border border-[#E2ECF8] shadow-[0_8px_40px_rgba(10,31,68,0.10)] h-[480px] relative transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-10"
+            }`}
+            style={{ transitionDelay: "600ms" }}
+          >
             <MapContainer
               center={[-28, 135]}
               zoom={4}
@@ -426,7 +481,14 @@ export function BranchMap() {
             </MapContainer>
 
             {/* Hint pill */}
-            <div className="absolute bottom-3.5 left-1/2 -translate-x-1/2 bg-[rgba(10,31,68,0.72)] text-white text-[11px] font-poppins py-[5px] px-3.5 rounded-full backdrop-blur-[8px] z-[500] pointer-events-none whitespace-nowrap">
+            <div
+              className={`absolute bottom-3.5 left-1/2 -translate-x-1/2 bg-[rgba(10,31,68,0.72)] text-white text-[11px] font-poppins py-[5px] px-3.5 rounded-full backdrop-blur-[8px] z-[500] pointer-events-none whitespace-nowrap transition-all duration-[600ms] ease-out ${
+                isVisible
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-5"
+              }`}
+              style={{ transitionDelay: "1200ms" }}
+            >
               Click a card or pin to explore
             </div>
           </div>
