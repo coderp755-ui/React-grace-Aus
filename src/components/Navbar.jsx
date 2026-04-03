@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Icon, ICONS } from "./Icon";
+import logoImg from "../assets/Grace-Logo.webp";
 
 const NAV_LINKS = [
   { label: "Home", path: "/" },
@@ -41,7 +42,7 @@ export function Navbar() {
           className="flex items-center gap-2.5 cursor-pointer no-underline"
         >
           <img
-            src="../src/assets/G.png"
+            src={logoImg}
             alt="Grace International Logo"
             className="w-[100px] h-[70px] object-contain"
           />
