@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FadeIn } from "../components/FadeIn";
 import { ICONS } from "../components/Icon";
 
@@ -45,7 +45,26 @@ const VISIBLE = 3;
 
 export function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
   const total = TESTIMONIALS.length;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -61,6 +80,7 @@ export function Testimonials() {
 
   return (
     <section
+      ref={sectionRef}
       style={{
         background:
           "linear-gradient(135deg, #F7F9FC 0%, #E3F2FD 50%, #BBDEFB 100%)",
@@ -69,35 +89,42 @@ export function Testimonials() {
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <FadeIn>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <span
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "#1565C0",
-                display: "block",
-                marginBottom: 12,
-              }}
-            >
-              Student Stories
-            </span>
-            <h2
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(32px, 4vw, 48px)",
-                fontWeight: 800,
-                color: "#0A1F44",
-                margin: 0,
-              }}
-            >
-              Clients are Talking
-            </h2>
-          </div>
-        </FadeIn>
+        <div
+          className={`transition-all duration-[800ms] ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{
+            textAlign: "center",
+            marginBottom: 64,
+            transitionDelay: "200ms",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 700,
+              fontSize: 12,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "#1565C0",
+              display: "block",
+              marginBottom: 12,
+            }}
+          >
+            Student Stories
+          </span>
+          <h2
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "clamp(32px, 4vw, 48px)",
+              fontWeight: 800,
+              color: "#0A1F44",
+              margin: 0,
+            }}
+          >
+            Clients are Talking
+          </h2>
+        </div>
 
         {/* Carousel */}
         <div style={{ position: "relative" }}>
@@ -112,16 +139,20 @@ export function Testimonials() {
             {visible.map((t, i) => (
               <div
                 key={currentIndex + i}
+                className={`transition-all duration-[600ms] ease-out ${
+                  isVisible
+                    ? "opacity-100 translate-y-0 scale-100"
+                    : "opacity-0 translate-y-10 scale-95"
+                }`}
                 style={{
                   background: "#fff",
                   borderRadius: 20,
                   padding: "36px 32px",
                   boxShadow: "0 2px 20px rgba(10,31,68,0.06)",
                   border: "1px solid #EBF0FB",
-                  transition: "all 0.3s ease",
                   display: "flex",
                   flexDirection: "column",
-                  animation: "fadeUp 0.5s ease both",
+                  transitionDelay: `${400 + i * 150}ms`,
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-4px)";
@@ -220,12 +251,18 @@ export function Testimonials() {
 
           {/* Navigation */}
           <div
+            className={`transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
             style={{
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               gap: 16,
               marginTop: 40,
+              transitionDelay: "800ms",
             }}
           >
             <button

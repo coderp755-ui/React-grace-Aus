@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { FadeIn } from "./FadeIn";
 import Trobe from "../assets/La Trobe University.webp";
 import Tas from "../assets/University of Tasmania.svg";
@@ -396,8 +397,29 @@ const universities = [
 ];
 
 export function Universities() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.05 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       style={{
         background:
           "linear-gradient(135deg, #F7F9FC 0%, #E3F2FD 50%, #BBDEFB 100%)",
@@ -414,9 +436,15 @@ export function Universities() {
       >
         <FadeIn>
           <div
+            className={`transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
             style={{
               textAlign: "center",
               marginBottom: "clamp(40px, 6vw, 70px)",
+              transitionDelay: "200ms",
             }}
           >
             <div
@@ -471,9 +499,14 @@ export function Universities() {
         </FadeIn>
 
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-7 w-full">
-          {universities.map((uni) => (
+          {universities.map((uni, index) => (
             <div
               key={uni.id}
+              className={`transition-all duration-[600ms] ease-out ${
+                isVisible
+                  ? "opacity-100 translate-y-0 scale-100"
+                  : "opacity-0 translate-y-10 scale-95"
+              }`}
               style={{
                 background: "white",
                 borderRadius: "24px",
@@ -490,6 +523,7 @@ export function Universities() {
                 border: "1px solid rgba(226, 232, 240, 0.8)",
                 position: "relative",
                 overflow: "visible",
+                transitionDelay: `${400 + (index % 12) * 50}ms`,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow =

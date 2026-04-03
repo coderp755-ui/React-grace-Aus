@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FadeIn } from "./FadeIn";
 
 const FAQS = [
@@ -31,6 +31,25 @@ const FAQS = [
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const toggle = (i) => {
     setOpenIndex(openIndex === i ? null : i);
@@ -38,6 +57,7 @@ export function Faq() {
 
   return (
     <section
+      ref={sectionRef}
       style={{
         background:
           "linear-gradient(135deg, #F7F9FC 0%, #E3F2FD 50%, #BBDEFB 100%)",
@@ -56,200 +76,217 @@ export function Faq() {
         }}
       >
         {/* Left */}
-        <FadeIn>
-          <div>
-            <span
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                color: "#1565C0",
-                display: "block",
-                marginBottom: 12,
-              }}
-            >
-              FAQs
-            </span>
-            <h2
-              style={{
-                fontFamily: "'Poppins', sans-serif",
-                fontSize: "clamp(28px, 3.5vw, 44px)",
-                fontWeight: 800,
-                color: "#0A1F44",
-                marginBottom: 40,
-                lineHeight: 1.2,
-              }}
-            >
-              Get the Answers to Common Questions
-            </h2>
-
-            {/* Accordion */}
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              {FAQS.map((faq, i) => (
-                <div
-                  key={i}
-                  style={{
-                    background: "#fff",
-                    borderRadius: 12,
-                    border:
-                      openIndex === i
-                        ? "1.5px solid #1565C0"
-                        : "1.5px solid #EBF0FB",
-                    boxShadow:
-                      openIndex === i
-                        ? "0 4px 20px rgba(21,101,192,0.1)"
-                        : "0 2px 8px rgba(10,31,68,0.05)",
-                    overflow: "hidden",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  <button
-                    onClick={() => toggle(i)}
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "18px 20px",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      textAlign: "left",
-                      gap: 12,
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontFamily: "'Poppins', sans-serif",
-                        fontSize: 15,
-                        fontWeight: 600,
-                        color: openIndex === i ? "#1565C0" : "#0A1F44",
-                        transition: "color 0.3s",
-                      }}
-                    >
-                      {faq.question}
-                    </span>
-                    <div
-                      style={{
-                        width: 28,
-                        height: 28,
-                        borderRadius: "50%",
-                        background: openIndex === i ? "#1565C0" : "#EBF0FB",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                        transition: "all 0.3s",
-                      }}
-                    >
-                      <svg
-                        width={14}
-                        height={14}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke={openIndex === i ? "#fff" : "#1565C0"}
-                        strokeWidth={2.5}
-                        strokeLinecap="round"
-                        style={{
-                          transition: "transform 0.3s",
-                          transform:
-                            openIndex === i ? "rotate(180deg)" : "rotate(0deg)",
-                        }}
-                      >
-                        <path d="M6 9l6 6 6-6" />
-                      </svg>
-                    </div>
-                  </button>
-
-                  {openIndex === i && (
-                    <div
-                      style={{
-                        padding: "0 20px 18px",
-                        fontFamily: "'Poppins', sans-serif",
-                        fontSize: 14,
-                        color: "#64748B",
-                        lineHeight: 1.7,
-                        borderTop: "1px solid #EBF0FB",
-                      }}
-                    >
-                      <p style={{ margin: "14px 0 0" }}>{faq.answer}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* Right — Image */}
-        <FadeIn delay={0.2}>
-          <div
+        <div>
+          <span
+            className={`transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-10"
+            }`}
             style={{
-              position: "relative",
-              borderRadius: 20,
-              overflow: "hidden",
-              height: 520,
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 700,
+              fontSize: 12,
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "#1565C0",
+              display: "block",
+              marginBottom: 12,
+              transitionDelay: "200ms",
             }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
-              alt="FAQ consultation"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                display: "block",
-              }}
-            />
-            {/* Overlay button */}
-            <a
-              href="/contact"
-              style={{
-                position: "absolute",
-                bottom: 24,
-                right: 24,
-                background: "linear-gradient(135deg, #1565C0, #42A5F5)",
-                color: "#fff",
-                padding: "14px 24px",
-                borderRadius: 50,
-                fontFamily: "'Poppins', sans-serif",
-                fontWeight: 600,
-                fontSize: 14,
-                textDecoration: "none",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                boxShadow: "0 8px 24px rgba(21,101,192,0.4)",
-                transition: "all 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow =
-                  "0 12px 32px rgba(21,101,192,0.5)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow =
-                  "0 8px 24px rgba(21,101,192,0.4)";
-              }}
-            >
-              Read More Q & A
-              <svg
-                width={16}
-                height={16}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2.5}
-                strokeLinecap="round"
+            FAQs
+          </span>
+          <h2
+            className={`transition-all duration-[800ms] ease-out ${
+              isVisible
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 -translate-x-10"
+            }`}
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontSize: "clamp(28px, 3.5vw, 44px)",
+              fontWeight: 800,
+              color: "#0A1F44",
+              marginBottom: 40,
+              lineHeight: 1.2,
+              transitionDelay: "400ms",
+            }}
+          >
+            Get the Answers to Common Questions
+          </h2>
+
+          {/* Accordion */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            {FAQS.map((faq, i) => (
+              <div
+                key={i}
+                className={`transition-all duration-[600ms] ease-out ${
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+                style={{
+                  background: "#fff",
+                  borderRadius: 12,
+                  border:
+                    openIndex === i
+                      ? "1.5px solid #1565C0"
+                      : "1.5px solid #EBF0FB",
+                  boxShadow:
+                    openIndex === i
+                      ? "0 4px 20px rgba(21,101,192,0.1)"
+                      : "0 2px 8px rgba(10,31,68,0.05)",
+                  overflow: "hidden",
+                  transitionDelay: `${600 + i * 100}ms`,
+                }}
               >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
+                <button
+                  onClick={() => toggle(i)}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "18px 20px",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    gap: 12,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 15,
+                      fontWeight: 600,
+                      color: openIndex === i ? "#1565C0" : "#0A1F44",
+                      transition: "color 0.3s",
+                    }}
+                  >
+                    {faq.question}
+                  </span>
+                  <div
+                    style={{
+                      width: 28,
+                      height: 28,
+                      borderRadius: "50%",
+                      background: openIndex === i ? "#1565C0" : "#EBF0FB",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0,
+                      transition: "all 0.3s",
+                    }}
+                  >
+                    <svg
+                      width={14}
+                      height={14}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke={openIndex === i ? "#fff" : "#1565C0"}
+                      strokeWidth={2.5}
+                      strokeLinecap="round"
+                      style={{
+                        transition: "transform 0.3s",
+                        transform:
+                          openIndex === i ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  </div>
+                </button>
+
+                {openIndex === i && (
+                  <div
+                    style={{
+                      padding: "0 20px 18px",
+                      fontFamily: "'Poppins', sans-serif",
+                      fontSize: 14,
+                      color: "#64748B",
+                      lineHeight: 1.7,
+                      borderTop: "1px solid #EBF0FB",
+                    }}
+                  >
+                    <p style={{ margin: "14px 0 0" }}>{faq.answer}</p>
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
-        </FadeIn>
+        </div>
+
+        {/* Right — Image */}
+        <div
+          className={`transition-all duration-[800ms] ease-out ${
+            isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"
+          }`}
+          style={{
+            position: "relative",
+            borderRadius: 20,
+            overflow: "hidden",
+            height: 520,
+            transitionDelay: "400ms",
+          }}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+            alt="FAQ consultation"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block",
+            }}
+          />
+          {/* Overlay button */}
+          <a
+            href="/contact"
+            style={{
+              position: "absolute",
+              bottom: 24,
+              right: 24,
+              background: "linear-gradient(135deg, #1565C0, #42A5F5)",
+              color: "#fff",
+              padding: "14px 24px",
+              borderRadius: 50,
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              fontSize: 14,
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              boxShadow: "0 8px 24px rgba(21,101,192,0.4)",
+              transition: "all 0.3s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow =
+                "0 12px 32px rgba(21,101,192,0.5)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow =
+                "0 8px 24px rgba(21,101,192,0.4)";
+            }}
+          >
+            Read More Q & A
+            <svg
+              width={16}
+              height={16}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+              strokeLinecap="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
   );

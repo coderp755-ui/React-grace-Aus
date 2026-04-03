@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FadeIn } from "../components/FadeIn";
 import { ICONS } from "../components/Icon";
 
@@ -32,6 +32,25 @@ const SERVICES = [
 
 export function Services() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,20 +73,29 @@ export function Services() {
 
   return (
     <section
+      ref={sectionRef}
       id="services"
       className="bg-gradient-to-br from-surface via-surface-blue to-surface-bluer py-[100px] px-6 w-full"
     >
       <div className="max-w-[1200px] mx-auto">
-        <FadeIn>
-          <div className="text-center mb-16">
-            <h2 className="font-poppins text-[clamp(32px,4vw,48px)] font-extrabold text-heading m-0 leading-[1.15]">
-              Comprehensive Study Abroad Services
-            </h2>
-          </div>
-        </FadeIn>
+        <div
+          className={`text-center mb-16 transition-all duration-[800ms] ease-out ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{ transitionDelay: "200ms" }}
+        >
+          <h2 className="font-poppins text-[clamp(32px,4vw,48px)] font-extrabold text-heading m-0 leading-[1.15]">
+            Comprehensive Study Abroad Services
+          </h2>
+        </div>
 
         {/* Carousel Container */}
-        <div className="relative overflow-hidden px-[60px]">
+        <div
+          className={`relative overflow-hidden px-[60px] transition-all duration-[800ms] ease-out ${
+            isVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
+          style={{ transitionDelay: "400ms" }}
+        >
           {/* Carousel Track */}
           <div
             className="flex transition-transform duration-500 ease-in-out"

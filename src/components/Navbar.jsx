@@ -5,7 +5,7 @@ import logoImg from "../assets/Grace-Logo.webp";
 
 const NAV_LINKS = [
   { label: "Home", path: "/" },
-  { label: "Study Abroad", path: "/destinations" },
+  // { label: "Study Abroad", path: "/destinations" },
   { label: "Services", path: "/services" },
   { label: "Process", path: "/process" },
   { label: "Universities", path: "/universities" },
