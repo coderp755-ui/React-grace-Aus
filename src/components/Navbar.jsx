@@ -27,6 +27,10 @@ export function Navbar() {
     setOpen(false);
   };
 
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-100 transition-all duration-400 ease-in-out ${
@@ -39,6 +43,7 @@ export function Navbar() {
         {/* Logo */}
         <Link
           to="/"
+          onClick={handleLogoClick}
           className="flex items-center gap-2.5 cursor-pointer no-underline"
         >
           <img
